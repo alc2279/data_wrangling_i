@@ -1,29 +1,40 @@
 ---
 title: "Data Import"
 author: "Annie Clark"
+date: "9/18/2018"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+##Import FAS csv files
+```{r}
+litters_data = read_csv(file = "./data/FAS_litters.csv")
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+getwd() #check that we're in the right working directory 
 
-```{r cars}
-summary(cars)
+litters_data
+##r doesn't do well with spaces/special symbols
+
+litters_data = janitor::clean_names(litters_data)
+
+##janitor::clean data
+##same as library(janitor)
 ```
 
-## Including Plots
+##Import FAS pups dataset
+```{r}
+pups_data = read_csv(file = "./data/FAS_pups.csv")
 
-You can also embed plots, for example:
+pups_data_abs = read_csv(file = "C:/Users/annel/Documents/CUMC/01_Fall_2018/P8105_Data_Science/Lectures/data_wrangling_i/data/FAS_pups.csv")
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+pups_data = janitor::clean_names(pups_data)
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
